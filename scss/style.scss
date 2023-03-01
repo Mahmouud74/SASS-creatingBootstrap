@@ -1,0 +1,88 @@
+*{
+    box-sizing: border-box;
+    
+}
+.container {
+    width: 80%;
+    margin: 0 auto;
+    &-fluid {
+        width: 100%;
+        margin: 0px;
+        &:hover {
+            background-color: orange;
+        }
+    }
+}
+.row{
+    display: flex;
+    flex-wrap: wrap;
+}
+@mixin gridcreator($numofcols:12,$screenname:'',$brekpoint:0px){
+    @if($screenname == ""){
+        @media all and (min-width:$brekpoint){
+            @for $i from 1 through $numofcols{
+                .col-#{$i}{
+                    width: 100/($numofcols/$i) *1%;
+                }
+            }
+        }
+    } @else{
+        @media all and (min-width:$brekpoint){
+            @for $i from 1 through $numofcols {
+                .col-#{$screenname}-#{$i}{
+                    width: 100/($numofcols / $i) *1%;
+                }
+            }
+        }
+    }
+}
+.form{
+    &-container{
+        &-input{
+            margin:15px 0px;
+        }
+    }
+    &-header{
+        text-align: center;
+        margin-bottom: 5px;
+    }
+}
+
+%inputs{
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    padding: 10px;
+    border: 2px solid white;
+
+}
+input{
+    @extend %inputs;
+    &:focus {
+        outline: teal;
+    }
+}
+label{
+    color: rgb(229, 226, 226);
+    font-size: 18px;
+    font-weight: bold;
+}
+.ourForm{
+    padding: 50px;
+    background-color: teal;
+    color: white;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+@include gridcreator(12, "",0px );
+@include gridcreator(12, "sm",576px );
+@include gridcreator(12, "md",768px );
+@include gridcreator(12, "lg",992px );
+@include gridcreator(12, "xl",1200px );
+@include gridcreator(12, "xxl",1600px );
+
